@@ -17,6 +17,7 @@ class LeadIndex extends Component
     }
 
     public function leadDelete($id) {
+        permission_check('lead-management'); //this permission check not neccessary because livewire already verifed then send data. But we may use it for double data securities.
         $lead = Lead::findOrFail($id);
         $lead->delete();
 
