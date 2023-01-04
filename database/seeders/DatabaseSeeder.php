@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use App\Models\Lead;
+use App\Models\Course;
+use App\Models\Curriculam;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,18 +20,47 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User();
-        $user->name = 'Super Admin';
-        $user->email = 'super@admin.com';
-        $user->password = bcrypt('password');
-        $user->save();
+        //create user with roles
+        $this->create_user_with_role('Super Admin', 'Super Admin', 'super-admin@lms.test');
+        $this->create_user_with_role('Communication', 'Communication Team', 'communication@lms.test');
+        $teacher = $this->create_user_with_role('Teacher', 'Teacher', 'teacher@lms.test');
 
-        $role = Role::create(['name' => 'super admin']);
-        $permission = Permission::create(['name' => 'create-admin']);
+        //create leads from leadfactory
+        Lead::factory()->count(100)->create();
 
-        $role->givePermissionTo($permission);
-        $permission->assignRole($role);
+        //create course
+        $course = Course::create([
+            'name' => 'Laravel',
+            'description' => 'Laravel is a PHP web application framework with expressive, elegant syntax. We have already laid the foundation — freeing you to create without sweating the...',
+            'image' => 'https://laravel.com/img/logomark.min.svg',
+            'user_id' => $teacher->id
+
+        ]);
+
+
+        //create curriculams
+        Curriculam::factory()->count(10)->create();
+    }
+    private function create_user_with_role ($type, $name, $email) {
+        $role = Role::create([
+            'name' => $type
+        ]);
+
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => bcrypt('password')
+        ]);
+
+        if($type == 'Super Admin'){
+            $permission = Permission::create([
+                'name' => 'create-admin'
+            ]);
+            $role->givePermissionTo($permission);
+        }
 
         $user->assignRole($role);
+
+        return $user;
     }
 }

@@ -12,6 +12,11 @@ class Counter extends Component
         return view('livewire.counter');
     }
     public function increase() {
+        flash()->addSuccess('Hello');
         $this->count++;
+    }
+    public function decrease() {
+        flash()->addWarning('Hello');
+        $this->count--;
     }
 }
