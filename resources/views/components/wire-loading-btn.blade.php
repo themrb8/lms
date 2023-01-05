@@ -4,4 +4,4 @@
             </svg>
             <span class="pl-2">Loading...</span>
         </div>
-        <button wire:loading.remove type="submit" class="submit-button bg-cyan-700 py-2 px-4 rounded-lg text-white">Update</button>
+        <button wire:loading.remove type="submit" class="submit-button bg-cyan-700 py-2 px-4 rounded-lg text-white">Submit</button>

@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Laravel',
             'description' => 'Laravel is a PHP web application framework with expressive, elegant syntax. We have already laid the foundation — freeing you to create without sweating the...',
             'image' => 'https://laravel.com/img/logomark.min.svg',
-            'user_id' => $teacher->id
+            'user_id' => $teacher->id,
+            'price' => 500,
 
         ]);
 
