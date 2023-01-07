@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
         //create curriculams
         Curriculam::factory()->count(10)->create();
     }
+
+    //create role assigned to permission
     private function create_user_with_role ($type, $name, $email) {
         $role = Role::create([
             'name' => $type
