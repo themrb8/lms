@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://laravel.com/img/logomark.min.svg',
             'user_id' => $teacher->id,
             'price' => 500,
+            'time' => '09:15:29',
+            'end_date' => '2023-01-08',
 
         ]);
 
