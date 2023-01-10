@@ -44,7 +44,7 @@ class InvoiceController extends Controller
         }
 
         $timestamp = $DBinvoice->due_date;
-        
+
         $invoice = \LaravelDaily\Invoices\Invoice::make()
             ->seller($client)
             ->buyer($customer)

@@ -18,8 +18,8 @@ class Course extends Model
         'end_date'
     ];
 
-    public function curriculams() {
-        return $this->hasMany(Curriculam::class);
+    public function curriculums() {
+        return $this->hasMany(Curriculum::class);
     }
 
     public function students() {

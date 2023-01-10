@@ -9,7 +9,7 @@ use DateInterval;
 use Carbon\Carbon;
 
 use App\Models\Course;
-use App\Models\Curriculam;
+use App\Models\Curriculum;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -60,7 +60,7 @@ class CourseCreate extends Component
 
             foreach ($date_range as $date) {
                 if($date->format("l") === ucfirst($day)){
-                    $curriculam = Curriculam::create([
+                    $curriculum = Curriculum::create([
                         'name' => $this->name.' '.$i++,
                         'course_id' => $course_id,
 

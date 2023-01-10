@@ -20,7 +20,6 @@
                 <td class="border px-4 py-2">${{ $invoice->amount() ['due'] }}</td>
                 <td class="border px-4 py-2 text-center flex  items-center justify-center space-x-2">
 
-                    <a href="{{ route('invoice-show', $invoice->id) }}">@include('components.icons.edit')</a>
                     <a href="{{ route('invoice-show', $invoice->id) }}">@include('components.icons.view')</a>
 
                     <form onsubmit="return confirm('Are you sure?');" wire:submit.prevent="invoiceDelete({{$invoice->id}})">

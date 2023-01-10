@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('curriculam_id');
+            $table->unsignedBigInteger('curriculum_id');
             $table->text('description');
             $table->timestamps();
 
-            $table->foreign('curriculam_id')->references('id')->on('curriculams')->onDelete('cascade');
+            $table->foreign('curriculum_id')->references('id')->on('curriculums')->onDelete('cascade');
         });
     }
 

@@ -5,17 +5,17 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Course;
-use App\Models\Curriculam;
+use App\Models\Curriculum;
 
 class CourseIndex extends Component
 {
     public function render()
     {
-        $curriculams = Curriculam::all();
+        $curriculums = Curriculum::all();
         $courses = Course::all();
         return view('livewire.course-index', [
             'courses' => $courses,
-            'curriculams' => $curriculams,
+            'curriculums' => $curriculums,
         ]);
     }
 }

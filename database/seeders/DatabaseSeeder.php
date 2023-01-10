@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Lead;
 use App\Models\Course;
-use App\Models\Curriculam;
+use App\Models\Curriculum;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://laravel.com/img/logomark.min.svg',
             'user_id' => $teacher->id,
             'price' => 500,
-            'time' => '09:15:29',
+            'time' => '09:15:00',
             'end_date' => '2023-01-08',
 
         ]);
 
 
-        //create curriculams
-        Curriculam::factory()->count(10)->create();
+        //create courses curriculums
+        Curriculum::factory()->count(5)->create();
     }
 
     //create role assigned to permission

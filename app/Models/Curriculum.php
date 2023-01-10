@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Curriculam extends Model
+class Curriculum extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,7 @@ class Curriculam extends Model
         'name',
         'course_id',
     ];
+    protected $table = 'curriculums';
 
     public function homeworks() {
         return $this->hasMany(Homework::class);
