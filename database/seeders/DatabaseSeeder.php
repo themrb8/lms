@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Course;
 use App\Models\Curriculum;
+use App\Models\Question;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,17 +35,17 @@ class DatabaseSeeder extends Seeder
         $this->create_user_with_role('Leads', 'Leads', 'leads@lms.test');
 
         //create leads from leadfactory
-        Lead::factory()->count(100)->create();
+        Lead::factory()->count(50)->create();
+        Question::factory()->count(20)->create();
 
         //create course
         $course = Course::create([
             'name' => 'Laravel',
+            'slug' => 'laravel',
             'description' => 'Laravel is a PHP web application framework with expressive, elegant syntax. We have already laid the foundation — freeing you to create without sweating the...',
             'image' => 'https://laravel.com/img/logomark.min.svg',
             'user_id' => $teacher->id,
             'price' => 500,
-            'time' => '09:15:00',
-            'end_date' => '2023-01-08',
 
         ]);
 

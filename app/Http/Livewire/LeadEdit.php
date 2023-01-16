@@ -17,7 +17,6 @@ class LeadEdit extends Component
 
     public function mount() {
         $lead = Lead::findOrFail($this->lead_id);
-        $this->lead_id = $lead->id;
         $this->name = $lead->name;
         $this->email = $lead->email;
         $this->phone = $lead->phone;
@@ -39,7 +38,6 @@ class LeadEdit extends Component
 
 
     public function submitForm() {
-        sleep(1);
         $lead = Lead::findOrFail($this->lead_id);
 
         $this->validate();
@@ -54,11 +52,12 @@ class LeadEdit extends Component
 
 
     public function addNote() {
+        $lead = Lead::findOrFail($this->lead_id);
         $note = new Note();
         $note->description = $this->note;
-        $note->lead_id = $this->lead_id;
         $note->save();
 
+        $lead->notes()->attach($note->id);
         $this->note = '';
 
         flash()->addSuccess('Note added successfully');

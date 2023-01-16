@@ -35,6 +35,8 @@ class CourseCreate extends Component
         'name' => 'required|unique:courses,name',
         'description' => 'required',
         'price' => 'required',
+        'selectedDays' => 'required',
+        'time' => 'required',
     ];
 
     public function formSubmit() {
@@ -42,11 +44,10 @@ class CourseCreate extends Component
 
         $course = Course::create([
             'name' => $this->name,
+            'slug' => str_replace(' ', '-', $this->name),
             'description' => $this->description,
             'price' => $this->price,
             'user_id' => Auth::user()->id,
-            'time' => $this->time.':00',
-            'end_date' => $this->end_date,
         ]);
 
         $course_id = $course->id;
@@ -63,6 +64,9 @@ class CourseCreate extends Component
                     $curriculum = Curriculum::create([
                         'name' => $this->name.' '.$i++,
                         'course_id' => $course_id,
+                        'week_day' => $day,
+                        'class_time' => $this->time,
+                        'end_date' => $this->end_date,
 
                     ]);
                 }
