@@ -80,7 +80,7 @@
     <h3 class="font-bold text-lg mb-4">Payments</h3>
     <ul>
         @foreach ($invoice->payments as $payment)
-            <li>{{date('F j, Y - g:i A', strtotime($payment->created_at))}} - ${{number_format($payment->amount, 2)}}</li>
+            <li>{{date('F j, Y - g:i A', strtotime($payment->created_at))}} - ${{number_format($payment->amount, 2)}} - transaction ID: {{$payment->transaction_id}} <button wire:click="refund({{$payment->id}})" class="bg-red-500 text-white text-sm px-2">Refund</button></li>
         @endforeach
     </ul>
 
