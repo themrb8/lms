@@ -15,43 +15,47 @@ class InvoiceController extends Controller
     }
 
     public function show($id) {
-        $DBinvoice = Invoice::findOrFail($id);
+        // $DBinvoice = Invoice::findOrFail($id);
 
-        $client = new Party([
-            'name'          => 'LMS - Learning Mangement System',
-            'address' => 'Bheramara, Kushtia',
-            'code' => 7040,
-            'phone'         => '+8801.........',
-            'custom_fields' => [
-                'note'        => 'New Course will be lanched soon...',
-            ],
+        // $client = new Party([
+        //     'name'          => 'LMS - Learning Mangement System',
+        //     'address' => 'Bheramara, Kushtia',
+        //     'code' => 7040,
+        //     'phone'         => '+8801.........',
+        //     'custom_fields' => [
+        //         'note'        => 'New Course will be lanched soon...',
+        //     ],
+        // ]);
+
+        // $customer = new Buyer([
+        //     'name'          => $DBinvoice->user->name,
+        //     'custom_fields' => [
+        //         'email' => $DBinvoice->user->email,
+        //     ],
+        // ]);
+
+        // $items = [];
+        // foreach($DBinvoice->items as $item) {
+        //     $items[] = (new InvoiceItem())->title($item->name)->pricePerUnit($item->price)->quantity($item->quantity);
+        // }
+
+        // foreach($DBinvoice->payments as $payment) {
+        //     $items[] = (new InvoiceItem())->title('Payment' )->pricePerUnit(-$payment->amount)->quantity(1);
+        // }
+
+        // $timestamp = $DBinvoice->due_date;
+
+        // $invoice = \LaravelDaily\Invoices\Invoice::make()
+        //     ->seller($client)
+        //     ->buyer($customer)
+        //     ->addItems($items)
+        //     ->dateFormat($timestamp)
+        //     ->currencySymbol('$');
+
+        // return $invoice->stream();
+
+        return view('user.invoice.show', [
+            'invoice' => Invoice::findOrFail($id),
         ]);
-
-        $customer = new Buyer([
-            'name'          => $DBinvoice->user->name,
-            'custom_fields' => [
-                'email' => $DBinvoice->user->email,
-            ],
-        ]);
-
-        $items = [];
-        foreach($DBinvoice->items as $item) {
-            $items[] = (new InvoiceItem())->title($item->name)->pricePerUnit($item->price)->quantity($item->quantity);
-        }
-
-        foreach($DBinvoice->payments as $payment) {
-            $items[] = (new InvoiceItem())->title('Payment' )->pricePerUnit(-$payment->amount)->quantity(1);
-        }
-
-        $timestamp = $DBinvoice->due_date;
-
-        $invoice = \LaravelDaily\Invoices\Invoice::make()
-            ->seller($client)
-            ->buyer($customer)
-            ->addItems($items)
-            ->dateFormat($timestamp)
-            ->currencySymbol('$');
-
-        return $invoice->stream();
     }
 }
